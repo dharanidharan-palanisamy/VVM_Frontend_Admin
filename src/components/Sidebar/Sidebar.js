@@ -1,0 +1,58 @@
+// admin/src/components/Sidebar/Sidebar.js
+import React from 'react';
+import { useAuth } from '../../context/AuthContext';
+
+const NAV = [
+  { key: 'dashboard', icon: '📊', label: 'Dashboard' },
+  { key: 'products',  icon: '🌶️', label: 'Products' },
+  { key: 'enquiries', icon: '📬', label: 'Enquiries', badgeKey: 'pendingEnquiries' },
+  { key: 'orders',    icon: '📦', label: 'Orders' },
+  { key: 'analytics', icon: '📈', label: 'Analytics' },
+  { key: 'settings',  icon: '⚙️', label: 'Settings' },
+];
+
+function Sidebar({ active, setActive, badges = {} }) {
+  const { admin, logout } = useAuth();
+
+  return (
+    <aside className="sidebar">
+      <div className="sidebar-logo">
+        <div className="sidebar-logo-mark">VVM</div>
+        <div>
+          <span className="sidebar-logo-text">VVM TRADERS</span>
+          <span className="sidebar-logo-sub">Admin Panel</span>
+        </div>
+      </div>
+
+      <nav className="sidebar-nav">
+        <div className="sidebar-section-label">Main Menu</div>
+        {NAV.map(item => (
+          <div key={item.key}
+            className={`sidebar-item ${active === item.key ? 'active' : ''}`}
+            onClick={() => setActive(item.key)}>
+            <span className="s-icon">{item.icon}</span>
+            <span>{item.label}</span>
+            {item.badgeKey && badges[item.badgeKey] > 0 && (
+              <span className="s-badge">{badges[item.badgeKey]}</span>
+            )}
+          </div>
+        ))}
+      </nav>
+
+      <div className="sidebar-footer">
+        <div className="sidebar-user">
+          <div className="sidebar-avatar">{admin?.username?.[0]?.toUpperCase() || 'A'}</div>
+          <div>
+            <div className="sidebar-user-name">{admin?.name || 'Admin'}</div>
+            <div className="sidebar-user-role">{admin?.role || 'admin'}</div>
+          </div>
+        </div>
+        <button className="sidebar-logout" onClick={logout}>
+          <span>🚪</span><span>Sign Out</span>
+        </button>
+      </div>
+    </aside>
+  );
+}
+
+export default Sidebar;
