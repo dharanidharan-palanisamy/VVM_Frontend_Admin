@@ -264,6 +264,24 @@ textarea.form-input { resize: vertical; min-height: 90px; }
   .form-grid {
     grid-template-columns: 1fr;
   }
+  .card {
+    padding: 16px 12px;
+  }
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .search-input-wrap {
+    width: 100%;
+  }
+  .search-input-wrap input {
+    width: 100% !important;
+  }
+  .toolbar > div {
+    margin-left: 0 !important;
+    flex-wrap: wrap;
+  }
 
   /* Responsive Table Card Layout */
   .table-wrap table, 
