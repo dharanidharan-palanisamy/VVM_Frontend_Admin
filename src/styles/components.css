@@ -191,9 +191,16 @@ textarea.form-input { resize: vertical; min-height: 90px; }
     align-items: center;
     font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 1px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
     color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .admin-shell {
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 
   /* Shift content down and remove fixed sidebar space */
@@ -201,6 +208,8 @@ textarea.form-input { resize: vertical; min-height: 90px; }
     margin-left: 0;
     padding: 20px 16px;
     margin-top: var(--header-h);
+    width: 100%;
+    min-width: 0;
   }
 
   /* Convert sidebar to slide-over drawer */
