@@ -9,7 +9,7 @@
 .page-subtitle { font-size: 13px; color: var(--text-dim); margin-top: 3px; }
 
 /* ── Sidebar ─────────────────────────────────────────────────────────────── */
-.sidebar { width: var(--sidebar-w); background: var(--bg2); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0; z-index: 100; }
+.sidebar { width: var(--sidebar-w); background: var(--bg2); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0; z-index: 100; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 .sidebar-logo { padding: 22px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
 .sidebar-logo-mark { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 700; color: var(--gold); flex-shrink: 0; }
 .sidebar-logo-text { font-size: 13px; font-weight: 600; color: var(--white); letter-spacing: 1px; display: block; }
@@ -148,12 +148,118 @@ textarea.form-input { resize: vertical; min-height: 90px; }
 .progress-bar { height: 7px; background: rgba(255,255,255,.07); border-radius: 4px; overflow: hidden; margin-top: 6px; }
 .progress-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
 
+/* ── Mobile Header & Grid Layouts ────────────────────────────────────────── */
+.mobile-header { display: none; }
+.sidebar-close-btn { display: none; }
+.sidebar-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(3px); z-index: 90; animation: fadeIn 0.2s ease; }
+.dashboard-grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
+.dashboard-grid-1-1 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
-@media (max-width: 1100px) { .kpi-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 768px) {
-  .admin-main { margin-left: 0; padding: 20px; }
-  .sidebar { display: none; }
+@media (max-width: 1100px) {
   .kpi-grid { grid-template-columns: 1fr 1fr; }
-  .form-grid { grid-template-columns: 1fr; }
 }
-@media (max-width: 520px) { .kpi-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  /* Mobile header active */
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-h);
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 80;
+  }
+  .menu-toggle {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-header-logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--gold);
+  }
+
+  /* Shift content down and remove fixed sidebar space */
+  .admin-main {
+    margin-left: 0;
+    padding: 20px 16px;
+    margin-top: var(--header-h);
+  }
+
+  /* Convert sidebar to slide-over drawer */
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 100;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+  }
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+  .sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.06);
+    border: none;
+    color: var(--text-mid);
+    font-size: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 24px;
+  }
+  .sidebar-close-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: var(--white);
+  }
+
+  /* Collapse dashboard grids into single columns */
+  .dashboard-grid-2-1,
+  .dashboard-grid-1-1 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr; /* Maintain 2x2 grid for clean aesthetic, adjust size */
+    gap: 12px;
+  }
+  .kpi-card {
+    padding: 16px;
+  }
+  .kpi-num {
+    font-size: 32px;
+  }
+  .page-title {
+    font-size: 26px;
+  }
+}
+

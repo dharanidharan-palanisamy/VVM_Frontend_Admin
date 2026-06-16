@@ -67,7 +67,7 @@ function Dashboard({ setActive }) {
         <KpiCard icon="📦" num={data.totalOrders} label="Total Orders" color={ACCENT.orders} delta={`₹ ${data.totalRevenue?.toLocaleString('en-IN')}`} />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16, marginBottom: 16 }}>
+      <div className="dashboard-grid-2-1">
         {/* Enquiry Trend Chart */}
         <div className="card">
           <div className="card-title">Monthly Enquiries <span>2025</span></div>
@@ -96,7 +96,7 @@ function Dashboard({ setActive }) {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div className="dashboard-grid-1-1">
         {/* Revenue Chart */}
         <div className="card">
           <div className="card-title">Monthly Revenue <span>₹ INR</span></div>

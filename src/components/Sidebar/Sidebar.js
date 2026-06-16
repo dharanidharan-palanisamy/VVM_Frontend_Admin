@@ -11,12 +11,14 @@ const NAV = [
   { key: 'settings',  icon: '⚙️', label: 'Settings' },
 ];
 
-function Sidebar({ active, setActive, badges = {} }) {
+function Sidebar({ active, setActive, badges = {}, isOpen, onClose }) {
   const { admin, logout } = useAuth();
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'mobile-open' : ''}`}>
       <div className="sidebar-logo">
+        <button className="sidebar-close-btn" onClick={onClose} aria-label="Close menu">✕</button>
+
         <img 
           src="/logo.png" 
           alt="VVM Logo" 

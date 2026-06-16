@@ -55,9 +55,45 @@ function AdminApp() {
     }
   };
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
-    <div className="admin-shell">
-      <Sidebar active={activeTab} setActive={setActiveTab} badges={badges} />
+    <div className={`admin-shell ${sidebarOpen ? 'sidebar-open' : ''}`}>
+      {/* Mobile Top Header */}
+      <header className="mobile-header">
+        <button className="menu-toggle" onClick={() => setSidebarOpen(true)} aria-label="Open navigation menu">
+          ☰
+        </button>
+        <div className="mobile-header-logo">
+          <img 
+            src="/logo.png" 
+            alt="VVM Logo" 
+            style={{ 
+              width: '30px', 
+              height: '30px', 
+              borderRadius: '50%',
+              backgroundColor: '#fff',
+              padding: '1.5px',
+              objectFit: 'contain',
+              border: '1px solid var(--gold)',
+              marginRight: '8px'
+            }} 
+          />
+          <span>VVM TRADERS</span>
+        </div>
+        <div style={{ width: 36 }} /> {/* Spacer to balance header elements */}
+      </header>
+
+      {/* Backdrop overlay for mobile sidebar */}
+      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+
+      <Sidebar 
+        active={activeTab} 
+        setActive={(tab) => { setActiveTab(tab); setSidebarOpen(false); }} 
+        badges={badges} 
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
       <main className="admin-main">{renderPage()}</main>
       <ToastContainer />
     </div>
