@@ -63,7 +63,7 @@ function Enquiries() {
       </div>
 
       {/* Status summary cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 20 }}>
+      <div className="kpi-grid" style={{ marginBottom: 20 }}>
         {[
           { label: 'All', key: 'all', color: 'var(--gold)', icon: '📬' },
           { label: 'Pending', key: 'Pending', color: 'var(--red)', icon: '⏳' },
@@ -83,7 +83,7 @@ function Enquiries() {
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: selected ? '1fr 360px' : '1fr', gap: 16 }}>
+      <div className={`split-grid ${selected ? 'has-details' : ''}`}>
         <div className="card">
           <div className="toolbar">
             <div className="search-input-wrap">

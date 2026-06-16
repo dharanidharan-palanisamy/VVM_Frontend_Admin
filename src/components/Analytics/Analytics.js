@@ -65,7 +65,7 @@ function Analytics() {
       </div>
 
       {/* Charts row 1 */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+      <div className="analytics-grid-1-1">
         <div className="card">
           <div className="card-title">Monthly Enquiries <span>Jan – Jun 2025</span></div>
           <ResponsiveContainer width="100%" height={240}>
@@ -94,7 +94,7 @@ function Analytics() {
       </div>
 
       {/* Charts row 2 */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+      <div className="analytics-grid-1-1-1">
         {/* Products by category bar */}
         <div className="card">
           <div className="card-title">Products by Category</div>

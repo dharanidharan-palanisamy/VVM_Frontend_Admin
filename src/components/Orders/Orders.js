@@ -98,7 +98,7 @@ function Orders() {
         <button className="btn btn-gold" onClick={() => setShowNew(true)}>+ New Order</button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 20 }}>
+      <div className="kpi-grid" style={{ marginBottom: 20 }}>
         {[
           { l: 'Total Orders', v: orders.length, color: 'var(--gold)', icon: '📦' },
           { l: 'Pending', v: orders.filter(o => o.status === 'Pending').length, color: 'var(--red)', icon: '⏳' },
@@ -114,7 +114,7 @@ function Orders() {
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: selected ? '1fr 340px' : '1fr', gap: 16 }}>
+      <div className={`split-grid ${selected ? 'has-details' : ''}`}>
         <div className="card">
           <div className="toolbar">
             <div className="search-input-wrap">
