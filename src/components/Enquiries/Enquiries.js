@@ -111,20 +111,20 @@ function Enquiries() {
                   )}
                   {filtered.map(e => (
                     <tr key={e.id} className={selected?.id === e.id ? 'selected' : ''} style={{ cursor: 'pointer' }} onClick={() => setSelected(e)}>
-                      <td>
+                      <td data-label="Client">
                         <div className="td-name">{e.name}</div>
                         <div className="td-sub">{e.company}</div>
                       </td>
-                      <td style={{ fontSize: 12, color: 'var(--text-mid)' }}>{e.product || '—'}</td>
-                      <td style={{ fontSize: 12, color: 'var(--text-dim)' }}>{e.date}</td>
-                      <td><StatusBadge status={e.status} /></td>
-                      <td onClick={ev => ev.stopPropagation()}>
+                      <td data-label="Product" style={{ fontSize: 12, color: 'var(--text-mid)' }}>{e.product || '—'}</td>
+                      <td data-label="Date" style={{ fontSize: 12, color: 'var(--text-dim)' }}>{e.date}</td>
+                      <td data-label="Status"><StatusBadge status={e.status} /></td>
+                      <td data-label="Update" onClick={ev => ev.stopPropagation()}>
                         <select className="form-input" style={{ padding: '5px 10px', fontSize: 11, width: 'auto', cursor: 'pointer' }}
                           value={e.status} onChange={ev => changeStatus(e.id, ev.target.value)}>
                           {STATUSES.map(s => <option key={s}>{s}</option>)}
                         </select>
                       </td>
-                      <td onClick={ev => ev.stopPropagation()}>
+                      <td data-label="Actions" onClick={ev => ev.stopPropagation()}>
                         <button className="btn btn-danger btn-sm" onClick={() => handleDelete(e.id)}>🗑️</button>
                       </td>
                     </tr>

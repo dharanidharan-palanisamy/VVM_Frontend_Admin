@@ -202,7 +202,7 @@ function Products() {
                 )}
                 {filtered.map(p => (
                   <tr key={p.id}>
-                    <td>
+                    <td data-label="Product">
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         <span style={{ fontSize: 26 }}>{p.emoji}</span>
                         <div>
@@ -211,13 +211,13 @@ function Products() {
                         </div>
                       </div>
                     </td>
-                    <td><CatBadge cat={p.cat} catLabel={p.catLabel} /></td>
-                    <td style={{ fontSize: 12, color: 'var(--text-mid)', maxWidth: 160 }}>{p.origin}</td>
-                    <td style={{ fontSize: 12, color: 'var(--text-mid)' }}>{p.grade}</td>
-                    <td><span style={{ fontWeight: 600, color: 'var(--gold)', fontFamily: "'Cormorant Garamond',serif", fontSize: 15 }}>₹ {p.price} / {p.unit}</span></td>
-                    <td><StockBadge stock={p.stock} /></td>
-                    <td style={{ textAlign: 'center', fontSize: 16 }}>{p.featured ? '⭐' : '—'}</td>
-                    <td>
+                    <td data-label="Category"><CatBadge cat={p.cat} catLabel={p.catLabel} /></td>
+                    <td data-label="Origin" style={{ fontSize: 12, color: 'var(--text-mid)', maxWidth: 160 }}>{p.origin}</td>
+                    <td data-label="Grade" style={{ fontSize: 12, color: 'var(--text-mid)' }}>{p.grade}</td>
+                    <td data-label="Price"><span style={{ fontWeight: 600, color: 'var(--gold)', fontFamily: "'Cormorant Garamond',serif", fontSize: 15 }}>₹ {p.price} / {p.unit}</span></td>
+                    <td data-label="Stock"><StockBadge stock={p.stock} /></td>
+                    <td data-label="Featured" style={{ textAlign: 'center', fontSize: 16 }}>{p.featured ? '⭐' : '—'}</td>
+                    <td data-label="Actions">
                       <div className="td-actions">
                         <button className="btn btn-info btn-sm" onClick={() => openEdit(p)}>✏️ Edit</button>
                         <button className="btn btn-danger btn-sm" onClick={() => handleDelete(p.id, p.name)}>🗑️ Del</button>

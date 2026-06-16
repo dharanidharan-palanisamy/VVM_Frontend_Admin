@@ -138,14 +138,14 @@ function Orders() {
                   {filtered.length === 0 && <tr><td colSpan={8}><div className="empty-state"><div className="empty-icon">📭</div><p className="empty-text">No orders found.</p></div></td></tr>}
                   {filtered.map(o => (
                     <tr key={o.id} className={selected?.id === o.id ? 'selected' : ''} style={{ cursor: 'pointer' }} onClick={() => setSelected(o)}>
-                      <td><span className="td-mono">{o.id}</span></td>
-                      <td><div className="td-name">{o.clientName}</div><div className="td-sub">{o.address}</div></td>
-                      <td style={{ fontSize: 12, color: 'var(--text-mid)' }}>{o.product}</td>
-                      <td style={{ fontWeight: 500 }}>{o.qty} {o.unit}</td>
-                      <td style={{ fontWeight: 600, color: 'var(--green)' }}>₹ {o.total?.toLocaleString('en-IN')}</td>
-                      <td style={{ fontSize: 12, color: 'var(--text-dim)' }}>{o.date}</td>
-                      <td><StatusBadge status={o.status} /></td>
-                      <td onClick={ev => ev.stopPropagation()}>
+                      <td data-label="Order ID"><span className="td-mono">{o.id}</span></td>
+                      <td data-label="Client"><div className="td-name">{o.clientName}</div><div className="td-sub">{o.address}</div></td>
+                      <td data-label="Product" style={{ fontSize: 12, color: 'var(--text-mid)' }}>{o.product}</td>
+                      <td data-label="Qty" style={{ fontWeight: 500 }}>{o.qty} {o.unit}</td>
+                      <td data-label="Value" style={{ fontWeight: 600, color: 'var(--green)' }}>₹ {o.total?.toLocaleString('en-IN')}</td>
+                      <td data-label="Date" style={{ fontSize: 12, color: 'var(--text-dim)' }}>{o.date}</td>
+                      <td data-label="Status"><StatusBadge status={o.status} /></td>
+                      <td data-label="Update" onClick={ev => ev.stopPropagation()}>
                         <select className="form-input" style={{ padding: '5px 10px', fontSize: 11, width: 'auto', cursor: 'pointer' }}
                           value={o.status} onChange={ev => changeStatus(o.id, ev.target.value)}>
                           {ORDER_STATUSES.map(s => <option key={s}>{s}</option>)}
