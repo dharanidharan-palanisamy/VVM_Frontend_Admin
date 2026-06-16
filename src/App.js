@@ -19,6 +19,7 @@ function AdminApp() {
   const { admin, loading } = useAuth();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [badges, setBadges] = useState({});
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Poll pending enquiry count for sidebar badge
   useEffect(() => {
@@ -54,8 +55,6 @@ function AdminApp() {
       default:           return <Dashboard setActive={setActiveTab} />;
     }
   };
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className={`admin-shell ${sidebarOpen ? 'sidebar-open' : ''}`}>
