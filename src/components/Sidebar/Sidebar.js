@@ -17,7 +17,20 @@ function Sidebar({ active, setActive, badges = {} }) {
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-        <div className="sidebar-logo-mark">VVM</div>
+        <img 
+          src="/logo.png" 
+          alt="VVM Logo" 
+          style={{ 
+            width: '38px', 
+            height: '38px', 
+            borderRadius: '50%',
+            backgroundColor: '#fff',
+            padding: '2px',
+            objectFit: 'contain',
+            border: '1.5px solid var(--gold)',
+            flexShrink: 0
+          }} 
+        />
         <div>
           <span className="sidebar-logo-text">VVM TRADERS</span>
           <span className="sidebar-logo-sub">Admin Panel</span>

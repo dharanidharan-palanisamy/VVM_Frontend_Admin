@@ -28,7 +28,21 @@ function Login() {
       <div className="login-bg" />
       <div className="login-card">
         <div className="login-logo">
-          <div className="login-logo-mark">VVM</div>
+          <img 
+            src="/logo.png" 
+            alt="VVM Logo" 
+            style={{ 
+              width: '60px', 
+              height: '60px', 
+              borderRadius: '50%',
+              backgroundColor: '#fff',
+              padding: '3px',
+              objectFit: 'contain',
+              border: '1.5px solid var(--gold)',
+              margin: '0 auto 12px',
+              display: 'block'
+            }} 
+          />
           <h1>Admin Panel</h1>
           <p>VVM Traders Management</p>
         </div>
